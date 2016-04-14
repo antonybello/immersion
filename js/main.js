@@ -64,7 +64,9 @@ $(document).ready(function() {
   var third = new Sound('audio/part3.mp3');
   var fourth = new Sound('audio/part4.mp3');
   var water = new Sound('audio/water.wav');
-	water.sound.volume(0.2);
+  water.startPlaying();
+  water.sound.volume(0.2);
+
 
 	var loadCount= 0;
 
