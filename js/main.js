@@ -89,7 +89,7 @@ $(document).ready(function() {
 	});
 
 var startAll = function() {
-  console.log(loadcount);
+  console.log(loadCount);
   if (loadCount == 4) {
     console.log("starting");
     first.startPlaying();
