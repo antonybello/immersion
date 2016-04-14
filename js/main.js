@@ -20,24 +20,26 @@ $(document).ready(function() {
 
   var Sound = function(url) {
     this.url = url;
-    this.isPlaying = false;
     this.sound = new Howl({
       urls: [url],
-			loop: true,
-      volume: 0.8
+      loop: true,
+      volume: 0.0
     });
+    this.sound.play();
+    this.isMuted = true;
   };
 
-  Sound.prototype.playSound = function() {
-    if (!this.isPlaying) {
-      this.sound.play();
-      this.isPlaying = true;
+
+  Sound.prototype.mute = function() {
+    if (!this.isMuted) {
+			this.sound.volume(0.0);
+      this.isMuted = true;
     }
   };
 
-  Sound.prototype.stopPlaying = function() {
-    if (this.isPlaying) {
-      this.sound.pause();
+  Sound.prototype.unmute = function() {
+    if (this.isMuted) {
+      this.sound.volume(0.8);
       this.isPlaying = false;
     }
   };
@@ -47,22 +49,21 @@ $(document).ready(function() {
   var third = new Sound('audio/part3.wav');
   var fourth = new Sound('audio/part4.wav');
 
-	first.playSound();
 
-	$('#1').click(function() {
-		first.playSound();
-	});
+  $('#1').click(function() {
+    first.unmute();
+  });
 
-	$('#2').click(function() {
-		second.playSound();
-	});
+  $('#2').click(function() {
+		second.unmute();
+  });
 
-	$('#3').click(function() {
-	third.playSound();
-});
+  $('#3').click(function() {
+    third.unmute();
+  });
 
-	$('#4').click(function() {
-		fourth.playSound();
-	});
+  $('#4').click(function() {
+    fourth.unmute();
+  });
 
 });
