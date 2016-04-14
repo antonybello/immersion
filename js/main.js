@@ -32,6 +32,7 @@ $(document).ready(function() {
     this.sound = new Howl({
       urls: [url],
       loop: true,
+			buffer: true,
       volume: 0.0
     });
     this.sound.play();
