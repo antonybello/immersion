@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	/* *********** */
+  /* *********** */
   /*   RIPPLES   */
   /* *********** */
 
@@ -32,10 +32,9 @@ $(document).ready(function() {
     this.sound = new Howl({
       urls: [url],
       loop: true,
-			buffer: true,
       volume: 0.0
     });
-    this.sound.play();
+		this.sound.play();
     this.isMuted = true;
   };
 
@@ -57,13 +56,50 @@ $(document).ready(function() {
   /* *********** */
   /*    EVENTS   */
   /* *********** */
-
   var first = new Sound('audio/part1.wav');
   var second = new Sound('audio/part2.mp3');
   var third = new Sound('audio/part3.mp3');
   var fourth = new Sound('audio/part4.mp3');
   var water = new Sound('audio/water.wav');
-  water.sound.volume(0.2);
+	water.sound.volume(0.2);
+
+	var loadCount= 0;
+
+	first.sound.on('load', function() {
+			console.log("first loaded");
+			loadCount++;
+	});
+
+	second.sound.on('load', function() {
+			console.log("second loaded");
+			loadCount++;
+	});
+
+	third.sound.on('load', function() {
+		console.log("third loaded");
+			loadCount++;
+	});
+
+	fourth.sound.on('load', function() {
+		console.log("fourth loaded");
+		loadCount++;
+	});
+
+var startAll = function() {
+  if (loadCount == 4) {
+    console.log("starting");
+    first.startPlaying();
+    second.startPlaying();
+    third.startPlaying();
+    fourth.startPlaying();
+    clearInterval(interval);
+  }
+};
+
+var interval = setInterval(startAll, 1000);
+
+
+
 
   $('#1').click(function() {
     if (first.isMuted) {
@@ -120,10 +156,10 @@ $(document).ready(function() {
     }
   }
 
-	$(document).on('click','body *',function(){
-		var elem = document.body;
-		requestFullScreen(elem);
-	});
+  $(document).on('click', 'body *', function() {
+    var elem = document.body;
+    requestFullScreen(elem);
+  });
 
 
 });
