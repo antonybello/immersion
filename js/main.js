@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+	/* *********** */
+  /*   RIPPLES   */
+  /* *********** */
+
   try {
     $('body').ripples({
       resolution: 512,
@@ -8,7 +13,7 @@ $(document).ready(function() {
   } catch (e) {
     $('.error').show().text(e);
   }
-  // Automatic drops
+
   setInterval(function() {
     var $el = $('body');
     var x = Math.random() * $el.outerWidth();
@@ -18,12 +23,9 @@ $(document).ready(function() {
     $el.ripples('drop', x, y, dropRadius, strength);
   }, 1000);
 
-// TODO:
-// Volume (numplaying, setvolume)
-// muting/unmuting
-// 5 values for the speeds, updated when songs are played (timeout)
-// Preloading
-
+  /* *********** */
+  /*   SOUNDS    */
+  /* *********** */
 
   var Sound = function(url) {
     this.url = url;
@@ -36,10 +38,9 @@ $(document).ready(function() {
     this.isMuted = true;
   };
 
-
   Sound.prototype.mute = function() {
     if (!this.isMuted) {
-			this.sound.volume(0.0);
+      this.sound.volume(0.0);
       this.isMuted = true;
     }
   };
@@ -51,54 +52,77 @@ $(document).ready(function() {
     }
   };
 
+
+  /* *********** */
+  /*    EVENTS   */
+  /* *********** */
+
   var first = new Sound('audio/part1.wav');
   var second = new Sound('audio/part2.wav');
   var third = new Sound('audio/part3.wav');
   var fourth = new Sound('audio/part4.wav');
-
+  var water = new Sound('audio/water.wav');
+  water.sound.volume(0.2);
 
   $('#1').click(function() {
-		if(first.isMuted) {
-			  first.unmute();
-				$('#1 img').addClass('inverted');
-		} else {
-			  first.mute();
-				$('#1 img').removeClass('inverted');
-		}
+    if (first.isMuted) {
+      first.unmute();
+      $('#1 img').addClass('inverted', 1000, 'easeInOutCubic');
+    } else {
+      first.mute();
+      $('#1 img').removeClass('inverted', 1000, 'easeInOutCubic');
+    }
 
   });
 
   $('#2').click(function() {
-		if(second.isMuted) {
-					second.unmute();
-						$('#2 img').addClass('inverted');
-		} else {
-				second.mute();
-					$('#2 img').removeClass('inverted');
-		}
+    if (second.isMuted) {
+      second.unmute();
+      $('#2 img').addClass('inverted', 1000, 'easeInOutCubic');
+    } else {
+      second.mute();
+      $('#2 img').removeClass('inverted', 1000, 'easeInOutCubic');
+    }
   });
 
   $('#3').click(function() {
-		if(third.isMuted) {
-					third.unmute();
-						$('#3 img').addClass('inverted');
+    if (third.isMuted) {
+      third.unmute();
+      $('#3 img').addClass('inverted', 1000, 'easeInOutCubic');
 
-		} else {
-				third.mute();
-								$('#3 img').removeClass('inverted');
-		}
+    } else {
+      third.mute();
+      $('#3 img').removeClass('inverted', 1000, 'easeInOutCubic');
+    }
   });
 
   $('#4').click(function() {
-		if(fourth.isMuted) {
-				fourth.unmute();
-					$('#4 img').addClass('inverted');
-		} else {
-				fourth.mute();
-											$('#4 img').removeClass('inverted');
-		}
+    if (fourth.isMuted) {
+      fourth.unmute();
+      $('#4 img').addClass('inverted', 1000, 'easeInOutCubic');
+    } else {
+      fourth.mute();
+      $('#4 img').removeClass('inverted', 1000, 'easeInOutCubic');
+    }
   });
 
+
+  function requestFullScreen(element) {
+    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullscreen;
+    if (requestMethod) {
+      requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+      var wscript = new ActiveXObject("WScript.Shell");
+      if (wscript !== null) {
+        wscript.SendKeys("{F11}");
+      }
+    }
+  }
+
+	$(document).on('click','body *',function(){
+		var elem = document.body;
+		requestFullScreen(elem);
+	});
 
 
 });

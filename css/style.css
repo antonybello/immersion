@@ -7,6 +7,12 @@ body {
 	height: 100%;
 }
 
+.jquery-ripples:fullscreen, .jquery-ripples:-webkit-full-screen, .jquery-ripples:-moz-full-screen {
+  background-image: url(../img/watercube_final.jpg);
+	background-size: cover;
+	height: 100%;
+}
+
 
 .raised {
 -webkit-transform: translateZ(0);
@@ -41,7 +47,7 @@ img:hover {
 }
 
 .vertical-wrap{
-  margin-top: 9em;
+  margin-top: 10em;
 }
 
 .error {
