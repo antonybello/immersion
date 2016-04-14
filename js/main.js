@@ -34,8 +34,11 @@ $(document).ready(function() {
       loop: true,
       volume: 0.0
     });
-		this.sound.play();
     this.isMuted = true;
+  };
+
+  Sound.prototype.startPlaying = function() {
+      this.sound.play();
   };
 
   Sound.prototype.mute = function() {
@@ -86,6 +89,7 @@ $(document).ready(function() {
 	});
 
 var startAll = function() {
+  console.log(loadcount);
   if (loadCount == 4) {
     console.log("starting");
     first.startPlaying();
@@ -97,8 +101,6 @@ var startAll = function() {
 };
 
 var interval = setInterval(startAll, 1000);
-
-
 
 
   $('#1').click(function() {
