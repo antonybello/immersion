@@ -1,4 +1,4 @@
-
+<!doctype html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
@@ -19,8 +19,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
-  <div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;">Loading...</div>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="status">&nbsp;</div>
+  </div>
+
   <div class="container">
     <div class="vertical-wrap">
       <div class="row">
@@ -38,26 +43,29 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-3 centered">
-        <a id="3"> <img class="img-responsive raised" src="img/watercube_panel3.png"> </a>
+          <a id="3"> <img class="img-responsive raised" src="img/watercube_panel3.png"> </a>
         </div>
         <div class="col-md-3 centered">
-        <a id="4">  <img class="img-responsive raised" src="img/watercube_panel4.png"></a>
+          <a id="4"> <img class="img-responsive raised" src="img/watercube_panel4.png"></a>
         </div>
         <div class="col-md-3">
         </div>
       </div>
     </div>
-    </div>
-<script src="https://code.jquery.com/jquery-2.2.3.min.js"  integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-<script type="text/javascript">
-$(window).load(function() {
-	$("#loadingMask").fadeOut("slow");
-})
-</script>
-
-<script src="js/jquery.ripples.js"></script>
-<script src="js/howler.min.js"></script>
-<script src="js/main.js"></script>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(window).load(function() { // makes sure the whole site is loaded
+      $('#status').fadeOut(); // will first fade out the loading animation
+      $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+      $('body').delay(350).css({
+        'overflow': 'visible'
+      });
+    })
+  </script>
+  <script src="js/jquery.ripples.js"></script>
+  <script src="js/howler.min.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 
