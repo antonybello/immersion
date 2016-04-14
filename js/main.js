@@ -38,7 +38,7 @@ $(document).ready(function() {
   };
 
   Sound.prototype.startPlaying = function() {
-      this.sound.play();
+    this.sound.play();
   };
 
   Sound.prototype.mute = function() {
@@ -55,7 +55,6 @@ $(document).ready(function() {
     }
   };
 
-
   /* *********** */
   /*    EVENTS   */
   /* *********** */
@@ -67,43 +66,35 @@ $(document).ready(function() {
   water.startPlaying();
   water.sound.volume(0.2);
 
+  var loadCount = 0;
+  first.sound.on('load', function() {
+    loadCount++;
+  });
 
-	var loadCount= 0;
+  second.sound.on('load', function() {
+    loadCount++;
+  });
 
-	first.sound.on('load', function() {
-			console.log("first loaded");
-			loadCount++;
-	});
+  third.sound.on('load', function() {
+    loadCount++;
+  });
 
-	second.sound.on('load', function() {
-			console.log("second loaded");
-			loadCount++;
-	});
+  fourth.sound.on('load', function() {
+    loadCount++;
+  });
 
-	third.sound.on('load', function() {
-		console.log("third loaded");
-			loadCount++;
-	});
+  var startAll = function() {
+    if (loadCount == 4) {
+      console.log("#fireitupbaby");
+      first.startPlaying();
+      second.startPlaying();
+      third.startPlaying();
+      fourth.startPlaying();
+      clearInterval(interval);
+    }
+  };
 
-	fourth.sound.on('load', function() {
-		console.log("fourth loaded");
-		loadCount++;
-	});
-
-var startAll = function() {
-  console.log(loadCount);
-  if (loadCount == 4) {
-    console.log("starting");
-    first.startPlaying();
-    second.startPlaying();
-    third.startPlaying();
-    fourth.startPlaying();
-    clearInterval(interval);
-  }
-};
-
-var interval = setInterval(startAll, 1000);
-
+  var interval = setInterval(startAll, 1000);
 
   $('#1').click(function() {
     if (first.isMuted) {
@@ -159,11 +150,8 @@ var interval = setInterval(startAll, 1000);
       }
     }
   }
-
   $(document).on('click', 'body *', function() {
     var elem = document.body;
     requestFullScreen(elem);
   });
-
-
 });
