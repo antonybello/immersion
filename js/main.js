@@ -18,6 +18,13 @@ $(document).ready(function() {
     $el.ripples('drop', x, y, dropRadius, strength);
   }, 1000);
 
+// TODO:
+// Volume (numplaying, setvolume)
+// muting/unmuting
+// 5 values for the speeds, updated when songs are played (timeout)
+// Preloading
+
+
   var Sound = function(url) {
     this.url = url;
     this.sound = new Howl({
@@ -40,7 +47,7 @@ $(document).ready(function() {
   Sound.prototype.unmute = function() {
     if (this.isMuted) {
       this.sound.volume(0.8);
-      this.isPlaying = false;
+      this.isMuted = false;
     }
   };
 
@@ -51,19 +58,47 @@ $(document).ready(function() {
 
 
   $('#1').click(function() {
-    first.unmute();
+		if(first.isMuted) {
+			  first.unmute();
+				$('#1 img').addClass('inverted');
+		} else {
+			  first.mute();
+				$('#1 img').removeClass('inverted');
+		}
+
   });
 
   $('#2').click(function() {
-		second.unmute();
+		if(second.isMuted) {
+					second.unmute();
+						$('#2 img').addClass('inverted');
+		} else {
+				second.mute();
+					$('#2 img').removeClass('inverted');
+		}
   });
 
   $('#3').click(function() {
-    third.unmute();
+		if(third.isMuted) {
+					third.unmute();
+						$('#3 img').addClass('inverted');
+
+		} else {
+				third.mute();
+								$('#3 img').removeClass('inverted');
+		}
   });
 
   $('#4').click(function() {
-    fourth.unmute();
+		if(fourth.isMuted) {
+				fourth.unmute();
+					$('#4 img').addClass('inverted');
+		} else {
+				fourth.mute();
+											$('#4 img').removeClass('inverted');
+		}
   });
+
+
 
 });
