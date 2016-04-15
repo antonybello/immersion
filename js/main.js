@@ -59,9 +59,9 @@ $(document).ready(function() {
   /*    EVENTS   */
   /* *********** */
   var first = new Sound('audio/part1.wav');
-  var second = new Sound('audio/part2.mp3');
-  var third = new Sound('audio/part3.mp3');
-  var fourth = new Sound('audio/part4.mp3');
+  var second = new Sound('audio/part2.wav');
+  var third = new Sound('audio/part3.wav');
+  var fourth = new Sound('audio/part4.wav');
   var water = new Sound('audio/water.wav');
   water.startPlaying();
   water.sound.volume(0.2);
